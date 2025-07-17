@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FELIX | 安卓电视刷机破解</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #8b5cf6;
+            --dark: #0f172a;
+            --light: #f1f5f9;
+            --glass: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            --hover-bg: rgba(99, 102, 241, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: var(--light);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://i.postimg.cc/02njcLbZ/FELIX.png') no-repeat center center/cover;
+            opacity: 0.2;
+            z-index: -2;
+        }
+
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .glass {
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* 导航栏样式 */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            margin-bottom: 30px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .logo i {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background: var(--glass);
+            transform: translateY(-3px);
+        }
+
+        .nav-links a.active {
+            background: var(--primary);
+        }
+
+        /* 汉堡菜单 */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.8rem;
+        }
+
+        /* 页面内容 */
+        .page {
+            display: none;
+            min-height: 70vh;
+            padding: 30px;
+            margin-bottom: 40px;
+            animation: fadeIn 0.8s ease;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 主页样式 */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .avatar {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 4px solid var(--glass-border);
+            overflow: hidden;
+            margin-bottom: 25px;
+            position: relative;
+            transition: all 0.4s ease;
+        }
+
+        .avatar:hover {
+            transform: scale(1.1);
+            border-color: var(--primary);
+        }
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .name {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .tagline {
+            font-size: 1.5rem;
+            color: #cbd5e1;
+            margin-bottom: 30px;
+        }
+
+        .contact-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            width: 100%;
+            margin-top: 40px;
+        }
+
+        .contact-card {
+            padding: 25px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .contact-card:hover {
+            transform: scale(1.05) translateY(-10px);
+            background: var(--hover-bg);
+        }
+
+        .contact-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .contact-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        .contact-card p {
+            color: #94a3b8;
+            font-size: 1.1rem;
+        }
+
+        /* 博客页面样式 */
+        .blog-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .blog-card {
+            padding: 25px;
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+            background: var(--hover-bg);
+        }
+
+        .blog-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .blog-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+            color: var(--primary);
+        }
+
+        .blog-card .date {
+            color: #94a3b8;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .blog-card p {
+            flex-grow: 1;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            color: #cbd5e1;
+        }
+
+        .read-more {
+            display: inline-block;
+            padding: 8px 20px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .read-more:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        /* 应用商店样式 */
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .app-card {
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .app-card:hover {
+            transform: scale(1.05) translateY(-10px);
+            background: var(--hover-bg);
+        }
+
+        .app-icon {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 20px;
+            border-radius: 24px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+        }
+
+        .app-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+        }
+
+        .app-card p {
+            color: #94a3b8;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .download-btn {
+            display: inline-block;
+            padding: 10px 25px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .download-btn:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(139, 92, 246, 0.4);
+        }
+
+        /* 页脚样式 */
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #94a3b8;
+            font-size: 1rem;
+            border-top: 1px solid var(--glass-border);
+            margin-top: 50px;
+        }
+
+        .social-links {
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-links a {
+            color: #94a3b8;
+            font-size: 1.4rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                right: 0;
+                background: var(--dark);
+                flex-direction: column;
+                padding: 20px;
+                gap: 15px;
+                z-index: 100;
+                border-bottom: 1px solid var(--glass-border);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links a {
+                width: 100%;
+                text-align: center;
+                padding: 12px;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .name {
+                font-size: 2.2rem;
+            }
+            
+            .tagline {
+                font-size: 1.2rem;
+            }
+            
+            .contact-cards, .blog-container, .app-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .page {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 粒子背景 -->
+    <canvas class="particles" id="particles"></canvas>
+    
+    <div class="container">
+        <!-- 导航栏 -->
+        <header class="glass">
+            <nav>
+                <div class="logo">
+                    <i class="fas fa-microchip"></i>
+                    <span>FELIX</span>
+                </div>
+                <div class="nav-links">
+                    <a href="#home" class="active" data-page="home">首页</a>
+                    <a href="#blog" data-page="blog">博客</a>
+                    <a href="#apps" data-page="apps">应用商店</a>
+                </div>
+                <div class="hamburger" id="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </header>
+        
+        <!-- 主页内容 -->
+        <section id="home" class="page glass active">
+            <div class="hero">
+                <div class="avatar">
+                    <img src="https://i.postimg.cc/nhwztBKD/FELIX.png" alt="FELIX">
+                </div>
+                <h1 class="name">FELIX</h1>
+                <p class="tagline">安卓设备刷机专家 | 技术爱好者</p>
+                <p>专注于Android设备刷机、定制ROM开发与系统优化，致力于为发烧友提供最佳刷机体验</p>
+                
+                <div class="contact-cards">
+                    <div class="contact-card glass">
+                        <i class="fab fa-bilibili"></i>
+                        <h3>哔哩哔哩</h3>
+                        <p>熵枵</p>
+                    </div>
+                    <div class="contact-card glass">
+                        <i class="fas fa-envelope"></i>
+                        <h3>邮箱</h3>
+                        <p>fx17850332089@Outlook.com</p>
+                    </div>
+                    <div class="contact-card glass">
+                        <i class="fas fa-cloud"></i>
+                        <h3>云湖ID</h3>
+                        <p>5937823</p>
+                    </div>
+                    <div class="contact-card glass">
+                        <i class="fab fa-qq"></i>
+                        <h3>QQ</h3>
+                        <p>3178865551</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 博客页面 -->
+        <section id="blog" class="page glass">
+            <h2 style="font-size: 2rem; margin-bottom: 20px; text-align: center;">技术博客</h2>
+            <p style="text-align: center; margin-bottom: 30px; color: #94a3b8;">分享AndroidTV刷机技巧经验和设备优化</p>
+            
+            <div class="blog-container">
+                <div class="blog-card glass">
+                    <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?q=80&w=1974" alt="Android Root">
+                    <h3>AndroidTVadb完全指南</h3>
+                    <div class="date">2023年10月15日</div>
+                    <p>详细讲解各种Androidtv设备的adb方法，包括使用shizuku 以及如何避免常见问题...</p>
+                    <a href="#" class="read-more">阅读全文</a>
+                </div>
+                <div class="blog-card glass">
+                    <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=1974" alt="Custom ROM">
+                    <h3>TV开发入门</h3>
+                    <div class="date">2023年9月28日</div>
+                    <p>从零开始学习如何破解自己的Androidtv，基于shizuku...</p>
+                    <a href="#" class="read-more">阅读全文</a>
+                </div>
+                <div class="blog-card glass">
+                    <img src="https://images.unsplash.com/photo-1555099962-4199c345e5dd?q=80&w=2070" alt="Recovery Mode">
+                    <h3>防变砖技巧</h3>
+                    <div class="date">2023年9月10日</div>
+                    <p>掌握强制恢复模式的所有高级功能，包括adb救砖...</p>
+                    <a href="#" class="read-more">阅读全文</a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 应用商店页面 -->
+        <section id="apps" class="page glass">
+            <h2 style="font-size: 2rem; margin-bottom: 20px; text-align: center;">应用商店</h2>
+            <p style="text-align: center; margin-bottom: 30px; color: #94a3b8;">精选AndroidTV工具和应用，提升您的电视玩机体验</p>
+            
+            <div class="app-grid">
+                <div class="app-card glass">
+                    <div class="app-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>工具箱</h3>
+                    <p>一站式TV工具，简化玩机流程</p>
+                    <a href="javascript:void(0)" class="download-btn">下载</a>
+                </div>
+                <div class="app-card glass">
+                    <div class="app-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>ROM定制助手</h3>
+                    <p>可视化ROM定制工具，支持模块添加、系统精简和个性化设置</p>
+                    <a href="javascript:void(0)" class="download-btn">下载</a>
+                </div>
+                <div class="app-card glass">
+                    <div class="app-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>刷机救砖工具</h3>
+                    <p>智能检测设备问题，提供多种救砖方案，支持9008模式修复</p>
+                    <a href="javascript:void(0)" class="download-btn">下载</a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 页脚 -->
+        <footer class="glass">
+            <p>© 2023 FELIX | 本网站由123盘提供下载通道</p>
+            <div class="social-links">
+                <a href="https://github.com/" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://www.bilibili.com/" target="_blank"><i class="fab fa-bilibili"></i></a>
+                <a href="https://im.qq.com/" target="_blank"><i class="fab fa-qq"></i></a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // 粒子背景效果
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+        
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        const particles = [];
+        const particleCount = 150;
+        
+        // 生成随机颜色（基于主题色）
+        function getRandomColor() {
+            const colors = [
+                'rgba(99, 102, 241, 0.8)', // primary
+                'rgba(139, 92, 246, 0.8)', // secondary
+                'rgba(124, 58, 237, 0.8)', // indigo-600
+                'rgba(79, 70, 229, 0.8)'  // indigo-700
+            ];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+        
+        for (let i = 0; i < particleCount; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 3 + 1,
+                speedX: (Math.random() - 0.5) * 0.8,
+                speedY: (Math.random() - 0.5) * 0.8,
+                color: getRandomColor()
+            });
+        }
+        
+        function drawParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            particles.forEach(particle => {
+                ctx.beginPath();
+                ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+                ctx.fillStyle = particle.color;
+                ctx.fill();
+                
+                // 更新位置
+                particle.x += particle.speedX;
+                particle.y += particle.speedY;
+                
+                // 边界反弹
+                if (particle.x <= 0 || particle.x >= canvas.width) {
+                    particle.speedX *= -1;
+                }
+                
+                if (particle.y <= 0 || particle.y >= canvas.height) {
+                    particle.speedY *= -1;
+                }
+            });
+            
+            requestAnimationFrame(drawParticles);
+        }
+        
+        drawParticles();
+        
+        // 页面导航
+        function navigateToPage(pageId) {
+            // 更新活动导航链接
+            document.querySelectorAll('.nav-links a').forEach(a => {
+                a.classList.remove('active');
+                if (a.getAttribute('data-page') === pageId) {
+                    a.classList.add('active');
+                }
+            });
+            
+            // 显示目标页面
+            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            
+            // 更新URL
+            window.location.hash = pageId;
+            
+            // 关闭移动菜单
+            document.querySelector('.nav-links').classList.remove('active');
+        }
+        
+        // 初始化页面
+        function initPage() {
+            // 根据URL hash初始化页面
+            const hash = window.location.hash.substring(1);
+            const validPages = ['home', 'blog', 'apps'];
+            
+            if (validPages.includes(hash)) {
+                navigateToPage(hash);
+            } else {
+                navigateToPage('home');
+            }
+        }
+        
+        // 导航链接事件
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetPage = this.getAttribute('data-page');
+                navigateToPage(targetPage);
+            });
+        });
+        
+        // 汉堡菜单事件
+        document.getElementById('hamburger').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+        
+        // 响应窗口大小变化
+        window.addEventListener('resize', function() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+        
+        // 页面加载时初始化
+        window.addEventListener('load', initPage);
+        window.addEventListener('hashchange', initPage);
+    </script>
+</body>
+</html>
