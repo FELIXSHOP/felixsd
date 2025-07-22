@@ -6,8 +6,6 @@
     <title>FELIX</title>
     <link rel="icon" href="https://i.postimg.cc/MK1dw1Km/felix.jpg" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- ...后续内容... -->
-</head>
     <style>
         :root {
             --primary: #6366f1;
@@ -150,15 +148,15 @@
         }
 
         /* 主页样式 */
-.hero {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    text-align: left;
-    padding: 40px 20px;
-    gap: 50px; /* 增加左右间距 */
-}
+        .hero {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            text-align: left;
+            padding: 40px 20px;
+            gap: 50px; /* 增加左右间距 */
+        }
 
         .avatar {
             width: 180px;
@@ -295,12 +293,12 @@
         }
 
         /* 应用商店样式 */
-.app-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-    margin-top: 30px;
-}
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 30px;
+        }
 
         .app-card {
             padding: 25px;
@@ -370,12 +368,17 @@
             display: flex;
             justify-content: center;
             gap: 20px;
+            flex-wrap: wrap;
+            align-items: center;
         }
 
         .social-links a {
             color: #94a3b8;
             font-size: 1.4rem;
             transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
 
         .social-links a:hover {
@@ -384,27 +387,20 @@
         }
 
         /* 响应式设计 */
-@media (max-width: 768px) {
-    .nav-links {
-        display: none;
-        position: absolute;
-        top: 80px;
-        left: 0;
-        right: 0;
-        background: var(--dark);
-        flex-direction: column;
-        padding: 20px;
-        gap: 15px;
-        z-index: 100;
-        border-bottom: 1px solid var(--glass-border);
-    }
-    /* ...已有内容... */
-    .hero {
-        flex-direction: column;
-        text-align: center;
-        gap: 20px;
-    }
-}
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                right: 0;
+                background: var(--dark);
+                flex-direction: column;
+                padding: 20px;
+                gap: 15px;
+                z-index: 100;
+                border-bottom: 1px solid var(--glass-border);
+            }
             
             .nav-links.active {
                 display: flex;
@@ -420,6 +416,12 @@
                 display: block;
             }
             
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+            
             .name {
                 font-size: 2.2rem;
             }
@@ -428,9 +430,12 @@
                 font-size: 1.2rem;
             }
 
-            
             .page {
                 padding: 20px;
+            }
+            
+            .app-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -468,40 +473,50 @@
                     <h1 class="name">FELIX</h1>
                     <p class="tagline">安卓设备刷机专家 | 技术爱好者</p>
                     <p>专注于Android设备刷机、定制ROM开发与系统优化，致力于为发烧友提供最佳刷机体验</p>
-                    <div class="contact-cards">
-                        <div class="contact-card glass">
-                            <i class="fab fa-bilibili"></i>
-                            <h3>哔哩哔哩</h3>
-                            <p>
-                                <a href="https://space.bilibili.com/3546559063001700" target="_blank" style="color:inherit;text-decoration:underline;">
-                                    熵枵
-                                </a>
-                            </p>
-                        </div>
-                        <div class="contact-card glass">
-                            <i class="fas fa-envelope"></i>
-                            <h3>邮箱</h3>
-                            <p>
-                                <a href="mailto:f@felsd.dpdns.org" style="color:inherit;text-decoration:underline;">
-                                    f@felsd.dpdns.org
-                                </a>
-                            </p>
-                        </div>
-                        <div class="contact-card glass">
-                            <i class="fas fa-cloud"></i>
-                            <h3>云湖ID</h3>
-                            <p>5937823</p>
-                        </div>
-                        <div class="contact-card glass">
-                            <i class="fab fa-qq"></i>
-                            <h3>QQ</h3>
-                            <p>
-                                <a href="https://wpa.qq.com/msgrd?v=3&uin=3178865551&site=qq&menu=yes" target="_blank" style="color:inherit;text-decoration:underline;">
-                                    3178865551
-                                </a>
-                            </p>
-                        </div>
-                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-cards">
+                <div class="contact-card glass">
+                    <i class="fab fa-bilibili"></i>
+                    <h3>哔哩哔哩</h3>
+                    <p>
+                        <a href="https://space.bilibili.com/3546559063001700" target="_blank" style="color:inherit;text-decoration:underline;">
+                            熵枵
+                        </a>
+                    </p>
+                </div>
+                <div class="contact-card glass">
+                    <i class="fas fa-envelope"></i>
+                    <h3>邮箱</h3>
+                    <p>
+                        <a href="mailto:f@felsd.dpdns.org" style="color:inherit;text-decoration:underline;">
+                            f@felsd.dpdns.org
+                        </a>
+                    </p>
+                </div>
+                <div class="contact-card glass">
+                    <i class="fas fa-cloud"></i>
+                    <h3>云湖ID</h3>
+                    <p>5937823</p>
+                </div>
+                <div class="contact-card glass">
+                    <i class="fab fa-github"></i>
+                    <h3>GitHub</h3>
+                    <p>
+                        <a href="https://github.com/FELIXSHOP" target="_blank" style="color:inherit;text-decoration:underline;">
+                            FELIXSHOP
+                        </a>
+                    </p>
+                </div>
+                <div class="contact-card glass">
+                    <i class="fab fa-qq"></i>
+                    <h3>QQ</h3>
+                    <p>
+                        <a href="https://wpa.qq.com/msgrd?v=3&uin=3178865551&site=qq&menu=yes" target="_blank" style="color:inherit;text-decoration:underline;">
+                            3178865551
+                        </a>
+                    </p>
                 </div>
             </div>
         </section>
@@ -537,74 +552,87 @@
         </section>
         
         <!-- 应用商店页面 -->
-<section id="apps" class="page glass">
-    <h2 style="font-size: 2rem; margin-bottom: 20px; text-align: center;">应用商店</h2>
-    <p style="text-align: center; margin-bottom: 30px; color: #94a3b8;">精选AndroidTV工具和应用，提升您的电视玩机体验</p>
-    <div class="app-grid">
-        <div class="app-card glass">
-            <div class="app-icon">
-                <!-- 工具箱 Win11风格 -->
-                <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
-                  <rect x="8" y="18" width="44" height="30" rx="8" fill="#6366f1"/>
-                  <rect x="8" y="12" width="44" height="12" rx="6" fill="#8b5cf6"/>
-                  <rect x="18" y="28" width="24" height="8" rx="4" fill="#fff" opacity="0.7"/>
-                  <rect x="26" y="38" width="8" height="6" rx="3" fill="#fff" opacity="0.7"/>
-                </svg>
+        <section id="apps" class="page glass">
+            <h2 style="font-size: 2rem; margin-bottom: 20px; text-align: center;">应用商店</h2>
+            <p style="text-align: center; margin-bottom: 30px; color: #94a3b8;">精选AndroidTV工具和应用，提升您的电视玩机体验</p>
+            <div class="app-grid">
+                <div class="app-card glass">
+                    <div class="app-icon">
+                        <!-- 工具箱 Win11风格 -->
+                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                          <rect x="8" y="18" width="44" height="30" rx="8" fill="#6366f1"/>
+                          <rect x="8" y="12" width="44" height="12" rx="6" fill="#8b5cf6"/>
+                          <rect x="18" y="28" width="24" height="8" rx="4" fill="#fff" opacity="0.7"/>
+                          <rect x="26" y="38" width="8" height="6" rx="3" fill="#fff" opacity="0.7"/>
+                        </svg>
+                    </div>
+                    <h3>工具箱</h3>
+                    <p>一站式TV工具，简化玩机流程</p>
+                    <a href="https://your-download-link1.com" class="download-btn" target="_blank">下载</a>
+                </div>
+                <div class="app-card glass">
+                    <div class="app-icon">
+                        <!-- ROM定制助手 Win11风格 -->
+                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                          <rect x="10" y="14" width="40" height="32" rx="8" fill="#8b5cf6"/>
+                          <rect x="18" y="22" width="24" height="16" rx="4" fill="#fff" opacity="0.7"/>
+                          <rect x="24" y="28" width="12" height="4" rx="2" fill="#6366f1"/>
+                          <circle cx="30" cy="38" r="2" fill="#6366f1"/>
+                        </svg>
+                    </div>
+                    <h3>ROM定制助手</h3>
+                    <p>可视化ROM定制工具，支持模块添加、系统精简和个性化设置</p>
+                    <a href="https://your-download-link2.com" class="download-btn" target="_blank">下载</a>
+                </div>
+                <div class="app-card glass">
+                    <div class="app-icon">
+                        <!-- 刷机救砖工具 Win11风格 -->
+                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                          <rect x="14" y="20" width="32" height="24" rx="8" fill="#6366f1"/>
+                          <path d="M30 28v8" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+                          <circle cx="30" cy="38" r="2" fill="#fff"/>
+                          <rect x="22" y="14" width="16" height="8" rx="4" fill="#8b5cf6"/>
+                        </svg>
+                    </div>
+                    <h3>刷机救砖工具</h3>
+                    <p>智能检测设备问题，提供多种救砖方案，支持9008模式修复</p>
+                    <a href="https://your-download-link3.com" class="download-btn" target="_blank">下载</a>
+                </div>
             </div>
-            <h3>工具箱</h3>
-            <p>一站式TV工具，简化玩机流程</p>
-            <a href="https://your-download-link1.com" class="download-btn" target="_blank">下载</a>
-        </div>
-        <div class="app-card glass">
-            <div class="app-icon">
-                <!-- ROM定制助手 Win11风格 -->
-                <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
-                  <rect x="10" y="14" width="40" height="32" rx="8" fill="#8b5cf6"/>
-                  <rect x="18" y="22" width="24" height="16" rx="4" fill="#fff" opacity="0.7"/>
-                  <rect x="24" y="28" width="12" height="4" rx="2" fill="#6366f1"/>
-                  <circle cx="30" cy="38" r="2" fill="#6366f1"/>
-                </svg>
-            </div>
-            <h3>ROM定制助手</h3>
-            <p>可视化ROM定制工具，支持模块添加、系统精简和个性化设置</p>
-            <a href="https://your-download-link2.com" class="download-btn" target="_blank">下载</a>
-        </div>
-        <div class="app-card glass">
-            <div class="app-icon">
-                <!-- 刷机救砖工具 Win11风格 -->
-                <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
-                  <rect x="14" y="20" width="32" height="24" rx="8" fill="#6366f1"/>
-                  <path d="M30 28v8" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
-                  <circle cx="30" cy="38" r="2" fill="#fff"/>
-                  <rect x="22" y="14" width="16" height="8" rx="4" fill="#8b5cf6"/>
-                </svg>
-            </div>
-            <h3>刷机救砖工具</h3>
-            <p>智能检测设备问题，提供多种救砖方案，支持9008模式修复</p>
-            <a href="https://your-download-link3.com" class="download-btn" target="_blank">下载</a>
-        </div>
-    </div>
-</section>
- 
+        </section>
+        
         <!-- 页脚 -->
         <footer class="glass">
             <p>© 2025 FELIX | 本网站由123盘提供下载通道</p>
-<div class="social-links">
-    <a href="https://github.com/FELIXSHOP" target="_blank"><i class="fab fa-github"></i></a>
-    <a href="https://space.bilibili.com/3546559063001700" target="_blank"><i class="fab fa-bilibili"></i></a>
-    <a href="https://im.qq.com/" target="_blank"><i class="fab fa-qq"></i></a>
-    <a href="https://icp.we2050.com/id.php?keyword=20255408" target="_blank">
-        <img src="https://icp.we2050.com/logo.png" width="20" height="20" style="vertical-align: middle; margin-right: 5px;">团ICP备20255408号
-    </a>
-</div>
-
+            <div class="social-links">
+                <a href="https://github.com/FELIXSHOP/felixsd" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                <a href="https://space.bilibili.com/3546559063001700" target="_blank"><i class="fab fa-bilibili"></i> B站</a>
+                <a href="https://wpa.qq.com/msgrd?v=3&uin=3178865551&site=qq&menu=yes" target="_blank" title="QQ: 3178865551">
+                    <i class="fab fa-qq"></i> QQ
+                </a>
+                <a href="https://icp.we2050.com/id.php?keyword=20255408" target="_blank">
+                    <img src="https://icp.we2050.com/logo.png" width="20" height="20" style="vertical-align: middle; margin-right: 5px;">
+                    团ICP备20255408号
+                </a>
+                <a href="https://icp.govs.wang/id.php?keyword=20250000" target="_blank">
+                    <img src="https://icp.govs.wang/favicon.ico" width="20" height="20" style="vertical-align: middle; margin-right: 5px;">
+                    网ICP备20250000号
+                </a>
+            </div>
+        </footer>
+    </div>
     <script>
         // 粒子背景效果
         const canvas = document.getElementById('particles');
         const ctx = canvas.getContext('2d');
         
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        // 确保画布尺寸正确
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        
+        resizeCanvas();
         
         const particles = [];
         const particleCount = 150;
@@ -620,16 +648,22 @@
             return colors[Math.floor(Math.random() * colors.length)];
         }
         
-        for (let i = 0; i < particleCount; i++) {
-            particles.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                radius: Math.random() * 3 + 1,
-                speedX: (Math.random() - 0.5) * 0.8,
-                speedY: (Math.random() - 0.5) * 0.8,
-                color: getRandomColor()
-            });
+        // 初始化粒子
+        function initParticles() {
+            particles.length = 0; // 清空粒子数组
+            for (let i = 0; i < particleCount; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    radius: Math.random() * 3 + 1,
+                    speedX: (Math.random() - 0.5) * 0.8,
+                    speedY: (Math.random() - 0.5) * 0.8,
+                    color: getRandomColor()
+                });
+            }
         }
+        
+        initParticles();
         
         function drawParticles() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -668,18 +702,32 @@
                     a.classList.add('active');
                 }
             });
-            
+
             // 显示目标页面
-            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
-            document.getElementById(pageId).classList.add('active');
-            
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+                page.style.animation = 'none'; // 移除动画
+                if (page.id === pageId) {
+                    page.classList.add('active');
+                    page.style.display = 'block'; // 确保目标页面显示
+                    // 强制重绘，重新触发动画
+                    void page.offsetWidth; 
+                    page.style.animation = 'fadeIn 0.8s ease';
+                } else {
+                    page.style.display = 'none'; // 隐藏其他页面
+                }
+            });
+
             // 更新URL
             window.location.hash = pageId;
-            
+
             // 关闭移动菜单
             document.querySelector('.nav-links').classList.remove('active');
+
+            // 滚动到页面顶部
+            window.scrollTo(0, 0);
         }
-        
+
         // 初始化页面
         function initPage() {
             // 根据URL hash初始化页面
@@ -692,31 +740,44 @@
                 navigateToPage('home');
             }
         }
-        
-// 导航链接事件
-document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', function(e) {
-        e.preventDefault();
-        const targetPage = this.getAttribute('data-page');
-        navigateToPage(targetPage);
-        // 新增：移动端点击后收起菜单
-        document.querySelector('.nav-links').classList.remove('active');
-    });
-});
-        
+
+        // 导航链接事件
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetPage = this.getAttribute('data-page');
+                navigateToPage(targetPage);
+                // 移动端点击后收起菜单
+                document.querySelector('.nav-links').classList.remove('active');
+            });
+        });
+
         // 汉堡菜单事件
         document.getElementById('hamburger').addEventListener('click', function() {
             document.querySelector('.nav-links').classList.toggle('active');
         });
-        
+
         // 响应窗口大小变化
         window.addEventListener('resize', function() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+            resizeCanvas();
+            initParticles();
         });
-        
+
         // 页面加载时初始化
-        window.addEventListener('load', initPage);
+        document.addEventListener('DOMContentLoaded', function() {
+            initPage();
+            
+            // 确保所有页面默认隐藏
+            document.querySelectorAll('.page').forEach(page => {
+                if (!page.classList.contains('active')) {
+                    page.style.display = 'none';
+                } else {
+                    page.style.display = 'block';
+                }
+            });
+        });
+
+        // 监听hash变化
         window.addEventListener('hashchange', initPage);
     </script>
 </body>
